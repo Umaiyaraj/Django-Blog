@@ -20,7 +20,7 @@ from django.urls import path,include
 
 
 
-handler404 ='myproject.views.custom_error'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
