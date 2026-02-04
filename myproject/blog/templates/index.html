@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <h2 class="text-center">{{var | truncatewords:2}}</h2>
+    </div>
+
+    <div class="row m-3">
+        {% if page_obj %}
+         {% for post in page_obj %}
+
+    <!-- Blog Card -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img style="height:800;width:300;" src={{post.image}}
+                             class="img-fluid"
+                             alt="Blog Image">
+                    </div>
+
+                    <div class="col-md-8">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">
+                            {{post.content|truncatechars:60}}
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <a href={% url 'blog:detail' slug=post.slug %}>Read More</a>
+                            <a href="#" class="fw-bold text-dark text-decoration-none">
+                                {{post.category.name}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+         {% endfor %}
+                <!-- Pagination -->
+        <div class="col-12 my-3">
+            {% if page_obj.has_other_pages %}
+            <nav>
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">« First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item">
+                        <span class="page-link">Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
+                    </li>
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Last »</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+         {% else %}
+         <p> posts not availale </p>
+        {% endif %}
+</div>
+ 
+{% endblock %}

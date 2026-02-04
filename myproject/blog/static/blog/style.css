@@ -1,0 +1,19 @@
+body {
+    background-color: #6a8181;
+}
+
+.page-link {
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #6a8181;
+    color: #6a8181;
+    margin: 3px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.page-link:hover {
+    background-color: #6a8181;
+    color: white;
+}
+

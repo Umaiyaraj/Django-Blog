@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'blog:index' %}">Blog</a>      
+          <div class="col">
+            <div class="d-flex justify-content-end gap-4">
+                <a class="text-light text-decoration-none" href="{% url 'blog:index' %}">Home</a>
+                <a class="text-light text-decoration-none" href="{% url 'blog:about' %}">About</a>
+                <a class="text-light text-decoration-none" href="{% url 'blog:contact' %}">Contact</a>
+            </div>
+    </div>
+</nav>

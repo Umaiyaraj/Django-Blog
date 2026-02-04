@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+    <title>Contact Form</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #6a8181;
+        }
+        .contact-box{
+            width:450px;
+            margin:50px auto;
+            padding:30px;
+            background:#fff;
+            border-radius:6px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+        h2{
+            text-align:center;
+        }
+        input, textarea{
+            width:100%;
+            padding:10px;
+            margin:8px 0;
+            border:1px solid #ccc;
+            border-radius:4px;
+        }
+        button{
+            width:100%;
+            padding:10px;
+            background:#007bff;
+            color:#fff;
+            border:none;
+            border-radius:4px;
+            cursor:pointer;
+        }
+        button:hover{
+            background:#0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contact-box">
+    <h2>Contact Form</h2>
+    {% if messages %}
+    {% for message in messages %}
+        <div style="color: green;">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+     {{ form.name.errors }}
+
+
+    <form method="POST">
+         {% csrf_token %} 
+        <input type="text" name="name" placeholder="Name" required>
+
+        <input type="email" name="email" placeholder="Email"  {{ form.email.errors }} required>
+
+        <textarea name="message" rows="5" placeholder="Message" {{ form.message.errors }} required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
+{% endblock %}
